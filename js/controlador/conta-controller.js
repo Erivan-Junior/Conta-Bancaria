@@ -17,16 +17,42 @@ class ContaController {
         evento.preventDefault();
         const elementoNumero = document.querySelector('#numero');
         const elementoSaldo = document.querySelector('#saldo');
+        const elementoDtNiver = document.querySelector('#dataAniversario');
+        const elementoTipoConta = document.querySelector('#tipoConta')
 
-        const conta = new Conta(elementoNumero.value,
-            Number(elementoSaldo.value));
-        this.repositorioContas.adicionar(conta);
-        this.inserirContaNoHTML(conta);
+        switch (elementoTipoConta.value) {
+            case 'bonificada': 
+                const bonificada = new ContaBonificada(elementoNumero.value, 
+                                            Number(elementoSaldo.value));
+                this.repositorioContas.adicionar(bonificada);
+                this.inserirContaNoHTML(bonificada, 'Bonificada');
+                break;
+            case 'corrente':
+                const corrente = new Conta(elementoNumero.value, 
+                                            Number(elementoSaldo.value));
+                this.repositorioContas.adicionar(corrente);
+                this.inserirContaNoHTML(corrente, 'Corrente');
+                break;
+            case 'poupança':
+                const poupança = new ContaPoupança(elementoNumero.value, 
+                                            Number(elementoSaldo.value),
+                                            elementoDtNiver.value);
+                const dtniver = new Date(elementoDtNiver.value);
+                const QtdMeses = new Date().getMonth() - dtniver.getMonth();
+                if(QtdMeses > 0)
+                    poupança.render(QtdMeses)
+                this.repositorioContas.adicionar(poupança);
+                this.inserirContaNoHTML(poupança, 'Poupança');
+                break;
+            default: console.log("tipo desconhecido de conta!")
+                break;
+        }
+        
     }
 
-    inserirContaNoHTML(conta) {
+    inserirContaNoHTML(conta, tipo) {
         const elementoP = document.createElement('p');
-        elementoP.textContent = 'Conta ' + conta.numero + ': ' + conta.saldo;
+        elementoP.textContent = '[Conta ' + tipo + '] - ' + conta.numero + ': ' + conta.saldo;
         const botaoApagar = document.createElement('button');
         botaoApagar.textContent = 'X';
 

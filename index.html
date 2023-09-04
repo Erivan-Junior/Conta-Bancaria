@@ -3,18 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Sistema Bancário</title>
+    <style>
+        input {margin-bottom: 1%;}
+    </style>
 </head>
 <body>
-    <h1>Sistema Bancário</h1>
-    <form>
-        Numero: <input id="numero"> <br>
-        Saldo: <input id="saldo">
-        <button onclick="contaController.inserir(event)">Inserir</button>
-    </form>
+    <div style="text-align: center; margin: auto;">
+        <h1>Sistema Bancário</h1>
+        <form>
+            Numero <br> <input id="numero"> <br>
+            Saldo <br> <input id="saldo"> <br>
+            Data de Rendimento <br> <input id="dataAniversario" type="date"> <br>
+            Tipo de Conta <br>
+            <select id="tipoConta" aria-placeholder="Selecione a Conta">
+                <option value="bonificada">Bonificada</option>
+                <option value="corrente">Corrente</option>
+                <option value="poupança">Poupança</option>
+            </select>
+            <br>
+            <button onclick="contaController.inserir(event)" style="margin-top: 2%;">Cadastrar Nova Conta</button>
+        </form>
+    </div>
+    <h1>Contas Cadastradas</h1>
+    
 
     <script src="js/modelo/conta.js"></script>
     <script src="js/modelo/conta-bonificada.js"></script>
-    <script src="js/modelo/repositorio-contas.js"></script>
+    <script src="js/modelo/conta-poupança.js"></script>
+    <script src="js/repositorio/repositorio-contas.js"></script>
     <script src="js/controlador/conta-controller.js"></script>
     <script src="js/script.js"></script>
 </body>

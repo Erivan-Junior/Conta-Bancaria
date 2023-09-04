@@ -1,14 +1,16 @@
-const c1 = new Conta('1', 100);
-const c2 = new Conta('2');
-
 const contaController = new ContaController();
-contaController.adicionarConta(c1);
-contaController.adicionarConta(c2);
-contaController.listar();
 
-const contaBonificada = new ContaBonificada('10', 100);
-contaBonificada.creditar(10);
-console.log(contaBonificada.saldo);
+// const c1 = new Conta('1', 100);
+// const c2 = new Conta('2');
+
+// const contaController = new ContaController();
+// contaController.adicionarConta(c1);
+// contaController.adicionarConta(c2);
+// contaController.listar();
+
+// const contaBonificada = new ContaBonificada('10', 100);
+// contaBonificada.creditar(10);
+// console.log(contaBonificada.saldo);
 
 
 // const repContas = new RepositorioContas();
